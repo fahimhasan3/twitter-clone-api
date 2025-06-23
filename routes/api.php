@@ -19,6 +19,14 @@ Route::get('/users/{user}', function (User $user) {
     );
 });
 
+Route::get('/users/{user}/tweets', function (User $user) {
+    return $user
+        ->tweets()
+        ->with('user:id,name,username,avatar')
+        ->latest()
+        ->paginate(10);
+});
+
 Route::get('/tweets', function () {
     return Tweet::with('user:id,name,username,avatar')
         ->latest()
