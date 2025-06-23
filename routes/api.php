@@ -1,12 +1,23 @@
 <?php
 
 use App\Models\Tweet;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::get('/users/{user}', function (User $user) {
+    return $user->only(
+        'id',
+        'name',
+        'username',
+        'avatar',
+        'profile',
+        'location',
+        'link',
+        'linkText',
+        'created_at'
+    );
+});
 
 Route::get('/tweets', function () {
     return Tweet::with('user:id,name,username,avatar')
