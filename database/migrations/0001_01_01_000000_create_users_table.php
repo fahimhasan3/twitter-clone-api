@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('username')->unique();
-            $table->string('avatar');
+            $table->string('avatar')->default('https://i.pravatar.cc/150?img=50');
             $table->text('profile')->nullable();
             $table->string('location')->nullable();
             $table->string('link')->nullable();
